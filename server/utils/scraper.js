@@ -7,3 +7,12 @@ const validateListing = listing => {
     typeof listing.link === 'string'
   )
 }
+
+export const scrapeListings = async ({ browser, retryCount }) => {
+  try {
+    const page = await browser.newPage()
+    console.log(page, 'page')
+  } catch (browserError) {
+    throw new Error(`Failed to launch browser: ${browserError.message}`)
+  }
+}
