@@ -19,9 +19,19 @@ export const scrapeListings = async ({ browser, retryCount }) => {
       await page.waitForSelector('[itemprop="itemListElement"]', {
         timeout: 10000,
       })
+
+      const listings = await page.$$eval('[itemprop="itemListElement"]', elements => {
+        return elements.slice(0, 10).map(element => {
+          const title = element.querySelector('.t1jojoys')?.innerText || 'N/A'
+          const price = element.querySelector('._11jcbg2')?.innerText || 'N/A'
+          const link = element.querySelector('a')?.href || 'N/A'
+          return { title, price, link }
+        })
+      })
     } catch (pageError) {
       if (retryCount < MAX_RETRIES) {
         console.log(`Retrying... (${retryCount + 1}/${MAX_RETRIES})`)
+
         return await scrapeListings(retryCount + 1)
       }
     } finally {
