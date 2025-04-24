@@ -29,5 +29,9 @@ export const scrapeListings = async ({ browser, retryCount }) => {
     }
   } catch (browserError) {
     throw new Error(`Failed to launch browser: ${browserError.message}`)
+  } finally {
+    if (browser) {
+      await browser.close()
+    }
   }
 }
