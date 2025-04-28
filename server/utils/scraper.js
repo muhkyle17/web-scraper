@@ -34,6 +34,8 @@ export const scrapeListings = async ({ browser, retryCount }) => {
       if (validListings.length === 0) {
         throw new Error('No listings found')
       }
+
+      return validListings
     } catch (pageError) {
       if (retryCount < MAX_RETRIES) {
         console.log(`Retrying... (${retryCount + 1}/${MAX_RETRIES})`)
