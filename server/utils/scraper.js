@@ -42,10 +42,10 @@ export const scrapeListings = async ({ browser, retryCount }) => {
 
         return await scrapeListings(retryCount + 1)
       } else {
-        throw new Error(`Failed to scope data after ${MAX_RETRIES} attempts: ${pageError.message}`)
+        throw new Error(`Failed to scrape data after ${MAX_RETRIES} attempts: ${pageError.message}`)
       }
     } finally {
-      await page.close
+      await page.close()
     }
   } catch (browserError) {
     throw new Error(`Failed to launch browser: ${browserError.message}`)
