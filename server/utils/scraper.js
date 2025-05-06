@@ -29,6 +29,8 @@ export const scrapeListings = async ({ browser, retryCount }) => {
         })
       })
 
+      console.log(listings, 'listings')
+
       const validListings = listings.filter(validateListing)
 
       if (validListings.length === 0) {
