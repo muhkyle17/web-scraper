@@ -33,6 +33,8 @@ export const scrapeListings = async ({ browser, retryCount }) => {
 
       const validListings = listings.filter(validateListing)
 
+      console.log(validListings, 'validListings')
+
       if (validListings.length === 0) {
         throw new Error('No listings found')
       }
