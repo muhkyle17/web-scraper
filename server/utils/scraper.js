@@ -11,7 +11,7 @@ const validateListing = listing => {
 export const scrapeListings = async ({ browser, retryCount }) => {
   try {
     const page = await browser.newPage()
-    console.log(page, 'page')
+    console.log(page, 'page') // TODO: Remove
 
     try {
       await page.goto('https://www.airbnb.com/', { waitUntil: 'load' })
@@ -29,11 +29,11 @@ export const scrapeListings = async ({ browser, retryCount }) => {
         })
       })
 
-      console.log(listings, 'listings')
+      console.log(listings, 'listings') // TODO: Remove
 
       const validListings = listings.filter(validateListing)
 
-      console.log(validListings, 'validListings')
+      console.log(validListings, 'validListings') // TODO: Remove
 
       if (validListings.length === 0) {
         throw new Error('No listings found')
